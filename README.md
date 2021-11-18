@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://res.cloudinary.com/dmfac7zfe/image/upload/v1636749636/icons/Nightingale.webp" width="320" alt="Nest Logo" />
+  <img src="https://res.cloudinary.com/dmfac7zfe/image/upload/v1637171774/icons/Nightingale.webp" width="320" alt="Logo" />
 </p>
 
 ## Description

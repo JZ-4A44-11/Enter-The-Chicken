@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, BeforeInsert } from 'typeorm';
 import { Abstract } from '../db/class/abstractEntity';
-import Account from '../accounts/account.entity';
+import { Account } from '../accounts/account.entity';
 import { hash, compare } from 'bcrypt';
 
 @Entity('Users')
@@ -11,7 +11,7 @@ export class User extends Abstract {
   @Column()
   password: string;
 
-  @OneToMany(() => Account, (account) => account.onwer)
+  @OneToMany(() => Account, (account) => account.owner)
   accounts: Account[];
 
   @BeforeInsert()

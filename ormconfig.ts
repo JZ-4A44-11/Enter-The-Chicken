@@ -8,7 +8,7 @@ const ormConfig: ConnectionOptions = {
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   synchronize: true,
-  logging: true,
+  logging: false,
   entities: ['dist/**/*.entity.js'],
   migrations: ['src/db/migrations/*.js'],
   cli: { migrationsDir: 'src/db/migrations' },

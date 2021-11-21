@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 
 type UserSession = {
-  username: string;
+  email: string;
   password: string;
 };
 
@@ -17,21 +17,18 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise<User> {
+  async validateUser({ email, password }: UserSession): Promise<User> {
     const user = await this.userRep.findOne({ where: { email, password } });
-
-    if (!(await user.comparePassword(password))) {
+    console.log(password);
+    if (!password) {
       throw new UnauthorizedException('Invalid credentials');
     }
     return user;
-    // throw new InternalServerErrorException('User not found');
   }
 
-  public getUserToken({ username, password }: UserSession): {
-    access_token: string;
-  } {
-    return {
-      access_token: this.jwtService.sign({ username, password }),
-    };
+  public async getUserToken({ email, password }: UserSession): Promise<string> {
+    const { id } = await this.validateUser({ email, password });
+    const payload = { id, email, password };
+    return this.jwtService.sign(payload);
   }
 }

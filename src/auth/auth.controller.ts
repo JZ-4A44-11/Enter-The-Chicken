@@ -8,9 +8,11 @@ export class AuthController {
 
   @Post('/login')
   async login(@Req() req: Request): Promise<{ access_token: string }> {
-    return this.authService.getUserToken({
-      username: req.body.email,
-      password: req.body.password,
-    });
+    return {
+      access_token: await this.authService.getUserToken({
+        email: req.body.email,
+        password: req.body.password,
+      }),
+    };
   }
 }

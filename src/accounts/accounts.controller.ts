@@ -2,7 +2,7 @@ import { Req, Controller, Post, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { AccountsService } from './accounts.service';
 import { JwtGuard } from '../auth/guards/jwt.guard';
-import Account from './account.entity';
+import { Account } from './account.entity';
 
 @Controller('accounts')
 export class AccountsController {
@@ -11,6 +11,6 @@ export class AccountsController {
   @UseGuards(JwtGuard)
   @Post('profile')
   public getProfile(@Req() req: Request): Promise<Account[]> {
-    return this.accountsService.getProfile(req.user['username']);
+    return this.accountsService.getProfiles(req.user['email']);
   }
 }

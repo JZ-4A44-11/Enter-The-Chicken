@@ -37,3 +37,4 @@ lerna-debug.log*
 # Enviroment variables
 .env
 api.rest
+database.test.sqlite3

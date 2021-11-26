@@ -4,9 +4,13 @@ import { User } from '../auth/user.entity';
 import { Account } from './account.entity';
 import { AccountsController } from './accounts.controller';
 import { AccountsService } from './accounts.service';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Account, User])],
+  imports: [
+    TypeOrmModule.forFeature([Account, User]),
+    MulterModule.register({ dest: 'upload' }),
+  ],
   providers: [AccountsService],
   controllers: [AccountsController],
 })
